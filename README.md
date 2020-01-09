@@ -1,26 +1,12 @@
 
-# Realtime chat with Vue + Vuex + NodeJS + Socket.io
+# Многопользовательский чат
 
-## Project setup
-```
-yarn install
-```
+Стек технологий: Vue + Vuex + NodeJS + Socket.io
 
-### Compiles and hot-reloads for development
-```
-node server.js
-yarn serve
-```
+Для запуска: 
 
-### Compiles and minifies for production
-```
-yarn build
-```
+1. yarn install
+2. node server.js
+3. yarn serve
 
-### Lints and fixes files
-```
-yarn lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
