@@ -47,30 +47,30 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
-  name: "ChatRoom",
-  data() {
+  name: 'ChatRoom',
+  data () {
     return {
-      message: ""
+      message: ''
     };
   },
   computed: {
-    ...mapState(["userMessages", "serviceMessages", "users", "userName"])
+    ...mapState(['userMessages', 'serviceMessages', 'users', 'userName'])
   },
   methods: {
-    send() {
-      this.$socket.client.emit("send", this.message);
-      this.message = "";
+    send () {
+      this.$socket.client.emit('send', this.message);
+      this.message = '';
     },
-    leave() {
-      this.$socket.client.emit("leave", this.userName);
-      this.$router.push("/");
+    leave () {
+      this.$socket.client.emit('leave', this.userName);
+      this.$router.push('/');
     }
   },
-  mounted() {
-    this.$socket.client.emit("verify", this.userName);
+  mounted () {
+    this.$socket.client.emit('verify', this.userName);
   }
 };
 </script>

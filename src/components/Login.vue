@@ -1,6 +1,6 @@
 <template>
   <div class='login'>
-    <input class="login__input" placeholder="Введите Ваш ник" type="text" v-model="userName">
+    <input class="login__input" @keyup.enter="signUp" placeholder="Введите Ваш ник" type="text" v-model="userName">
     <button class="login__button" @click="signUp">Войти</button>
   </div>
 </template>
