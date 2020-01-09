@@ -1,6 +1,5 @@
 
 # Realtime chat with Vue + Vuex + NodeJS + Socket.io
->>>>>>> ccd56c06f5ef85100f0943e24ccca709def6aba4
 
 ## Project setup
 ```
