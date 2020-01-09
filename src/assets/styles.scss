@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+}
+
+ul,
+h2,
+h3,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  font-family: 'Comfortaa', cursive;
+  background-color: $mainBackground;
+  color: $mainFontColor;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 14px;
+}
+
+
+.medium {
+  font-family: 'Comfortaa Medium', cursive;
+}
+
+.light {
+  font-family: 'Comfortaa Light', cursive;
+}
+
+.bold {
+  font-family: 'Comfortaa Bold', cursive;
+}
+
+.vh-100 {
+  height: 100vh;
+}
