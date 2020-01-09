@@ -20,7 +20,7 @@ const server = app.listen(SERVER_PORT, () => console.log(`Server starting on por
 
 const io = require('socket.io').listen(server);
 
-const users = [];
+let users = [];
 
 io.on('connect', socket => {
   let userName = null;
@@ -47,6 +47,8 @@ io.on('connect', socket => {
 
   /** listen exit of user from chat */
   socket.on('leave', (user) => {
+    users = users.filter(item => item !== user);
+    io.emit('users_reload', users);
     io.emit('chat_leave', {
       user,
       type: 'leave'

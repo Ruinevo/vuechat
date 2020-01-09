@@ -10,9 +10,8 @@
     </header>
 
     <div class="chat__wrapper">
-
       <div class="chat__users users">
-        <h3>Участиники</h3>
+        <h3>В сети</h3>
         <ul class="users__list" v-if="users.length">
           <li class="users__item" v-for="user in users" :key="user">{{ user }}</li>
         </ul>
@@ -21,54 +20,57 @@
       <div class="chat__messages messages">
         <ul class="messages__list" v-if="userMessages.length">
           <li class="messages__item" v-for="(item, index) in userMessages" :key="index">
-            <span class="messages__name">{{ item.user }}: </span>
+            <span class="messages__name">{{ item.user }}:</span>
             <span class="messages__text">{{ item.message }}</span>
           </li>
         </ul>
         <div class="messages__controls controls">
-            <input class="controls__input" type="text" v-model="message" @keyup.enter="send" />
-            <button class="controls__button" @click="send">Отправить</button>
+          <input class="controls__input" type="text" v-model="message" @keyup.enter="send" />
+          <button class="controls__button" @click="send">Отправить</button>
         </div>
       </div>
 
-      <div class="chat__notifications notofications">
-        <ul class="notofications__list">
-          <li class="notofications__item" v-for="(message, index) in serviceMessages" :key="index">{{ message.user }}: {{ message.text }}</li>
+      <div class="chat__notifications notifications">
+        <ul class="notifications__list">
+          <li
+            class="notifications__item"
+            v-for="(message, index) in serviceMessages"
+            :key="index"
+          >{{ message.user }}: {{ message.text }}</li>
         </ul>
-        <div class="notofications__controls controls">
-            <button class="notofications__button" @click="leave">Выйти</button>
+        <div class="notifications__controls controls">
+          <button class="notifications__button" @click="leave">Выйти</button>
         </div>
       </div>
-
     </div>
   </section>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
-  name: 'ChatRoom',
-  data () {
+  name: "ChatRoom",
+  data() {
     return {
-      message: ''
+      message: ""
     };
   },
   computed: {
-    ...mapState(['userMessages', 'serviceMessages', 'users', 'userName'])
+    ...mapState(["userMessages", "serviceMessages", "users", "userName"])
   },
   methods: {
-    send () {
-      this.$socket.client.emit('send', this.message);
-      this.message = '';
+    send() {
+      this.$socket.client.emit("send", this.message);
+      this.message = "";
     },
-    leave () {
-      this.$socket.client.emit('leave', this.userName);
-      this.$router.push('/');
+    leave() {
+      this.$socket.client.emit("leave", this.userName);
+      this.$router.push("/");
     }
   },
-  mounted () {
-    this.$socket.client.emit('verify', this.userName);
+  mounted() {
+    this.$socket.client.emit("verify", this.userName);
   }
 };
 </script>
@@ -132,7 +134,6 @@ export default {
     background: $leftColumnBackground;
     padding: 10px;
     color: $userColor;
-
     .users__item {
       margin-top: 10px;
       font-size: 12px;
@@ -154,12 +155,6 @@ export default {
         background: $messagesBackground;
       }
     }
-
-    .messages__list,
-    .notofications__list {
-      height: calc(100% - 50px);
-      overflow-y: auto;
-    }
   }
 }
 
@@ -174,7 +169,7 @@ export default {
   display: flex;
 
   .controls__input {
-    width: 75%;
+    width: 70%;
     margin-right: 5px;
   }
 
@@ -187,20 +182,20 @@ export default {
   }
 }
 
-.notofications {
+.notifications {
   border-top: 1px solid $sendBackground;
   border-bottom: 1px solid $sendBackground;
   font-size: 12px;
   padding: 10px;
-  width: 20%;
+  width: 25%;
   color: $green;
   height: 100%;
   position: relative;
 
-  .notofications__controls {
+  .notifications__controls {
     justify-content: center;
 
-    .notofications__button {
+    .notifications__button {
       padding: 5px 20px;
       border-radius: 5px;
       color: #fff;
@@ -208,11 +203,17 @@ export default {
     }
   }
 
-  .notofications__item {
+  .notifications__item {
     &:not(:last-child) {
       margin-bottom: 5px;
     }
   }
 }
 
+.messages__list,
+.notifications__list,
+.users__list {
+  height: calc(100% - 50px);
+  overflow-y: auto;
+}
 </style>

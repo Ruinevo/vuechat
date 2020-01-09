@@ -13,11 +13,6 @@ export default {
       userName: null
     }
   },
-  sockets: {
-    reload (data) {
-      console.log(data);
-    }
-  },
   methods: {
     signUp () {
       this.$store.commit('SET_USER', this.userName);
